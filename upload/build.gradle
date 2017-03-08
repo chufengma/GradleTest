@@ -1,0 +1,42 @@
+apply plugin: 'maven-publish'
+
+
+def uploadVersion = '3.3'
+def uploadGroupId = 'org.gradle.distributions'
+def uploadFiles = "gradle-${uploadVersion}-all.zip"
+def uploadArtifactId = 'gradle'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId uploadGroupId
+            artifactId uploadArtifactId
+            version uploadVersion
+            artifact(uploadFiles) {
+                extension 'zip'  // 上传文件的后缀名（.zip, .aar, .jar）
+                classifier 'all' // 上传文件的后缀 ( *-all, *-JAR, *-AAR)
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            credentials {
+                username hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : "admin"
+                password hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : "admin123"
+            }
+
+            if (project.version.endsWith('-SNAPSHOT')) {
+                url hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL
+                        : "http://192.168.19.7:8081/nexus/content/repositories/snapshots/"
+            } else {
+                url hasProperty('RELEASE_REPOSITORY_URL') ? RELEASE_REPOSITORY_URL
+                        : "http://192.168.19.7:8081/nexus/content/repositories/releases/"
+            }
+        }
+    }
+}
+
+task uploadZip(dependsOn: ['publish']) {
+}
+
