@@ -36,7 +36,7 @@ class TestPluginExtension {
 ## 独立工程编译Plugin 上传到本地maven仓库
 
 通过在同一个脚本中创建Plugin并执行可以做到添加plugin扩展，如果要在dependencies中引入自定义Plugin则需要建立独立的Groovy工程 并且打包上传到仓库
-
+```
 |____build.gradle
 |____src
 | |____main
@@ -46,6 +46,7 @@ class TestPluginExtension {
 | | | |____META-INF
 | | | | |____gradle-plugins
 | | | | | |____GreetingPlugin.properties
+```
 
 1. 创建index.groovy
 ```
