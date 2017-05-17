@@ -164,4 +164,7 @@ Total time: 7.116 secs
 
 ```
 
+## 参考
 
+- https://docs.gradle.org/current/userguide/custom_plugins.html
+- http://blog.csdn.net/eclipsexys/article/details/50973205
