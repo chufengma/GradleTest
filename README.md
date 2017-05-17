@@ -7,3 +7,4 @@
 - [Gradle与goovyDSL](https://github.com/chufengma/GradleTest/blob/master/topics/Gradle%E4%B8%8Egroovy%20DSL.md)
 - [Gradle参数传递](https://github.com/chufengma/GradleTest/blob/master/topics/gradle%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92.md)
 - [Gradle自定义Plugin](https://github.com/chufengma/GradleTest/blob/master/topics/Gradle%E8%87%AA%E5%AE%9A%E4%B9%89Plugin.md)
+- [Gradle上传产物至仓库](https://github.com/chufengma/GradleTest/blob/master/topics/Gradle%E4%B8%8A%E4%BC%A0%E4%BA%A7%E7%89%A9%E8%87%B3%E4%BB%93%E5%BA%93.md)
