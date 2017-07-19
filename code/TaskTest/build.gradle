@@ -1,0 +1,211 @@
+// 创建一种类型的task
+class PrintPlus extends DefaultTask {
+	String message;
+
+	@TaskAction
+	void print() {
+		println "This is print message:${message}"
+	}
+}
+
+task print( type : PrintPlus ) {
+  group 'Fengma'
+  description 'This is print'
+  message 'Hello Gradle Task'
+	doLast {
+		println "Just print!"
+		logger.log(LogLevel.ERROR, "This is log")
+	}
+}
+
+task init() {
+	doLast {
+		println "This is init"
+	}
+}
+
+// defaultTasks 'init'
+
+class Con {
+	String name
+	int age
+}
+
+task configure {
+	doLast {
+		def pos = new Con()
+		apply from: 'intro.gradle', to: pos
+		println pos.name
+	}
+}
+
+
+ task configure2 {
+	doLast {
+		def pos = configure(new Con()) {
+			name = "jiangsanmi"
+			age = 11
+		}
+		println pos.name
+	}
+ }
+
+
+
+ task orderA {
+ 	doLast {
+ 		println "This is orderA"
+ 	}
+ }
+
+ task orderB {
+ 	doLast {
+ 		println "This is orderB"
+ 	}
+ }
+
+ task orderC {
+ 	doLast {
+ 		println "This is orderC"
+ 	}
+ }
+
+task orderC(overwrite: true) {
+	doLast {
+		println "This is new orderC"
+	}
+}
+
+task skipTask {
+	doLast {
+		println "This is skip task"
+	}
+}
+
+skipTask.onlyIf {
+	false
+}
+
+
+class DemoTask2 extends DefaultTask {
+
+	File message;
+	File outputDir;
+
+	String news;
+
+    @Input
+    File getMessage() {
+	  return this.message;
+    } 
+
+    void setMessage(File message) {
+     	this.message = message;
+    }
+
+	@OutputDirectory
+    public File getOutputDir() { return this.outputDir; }
+	
+	@TaskAction
+    void doit() {
+        println "name is :" + message + "," + news;
+    }
+
+}
+
+task custom() {
+	outputs.dir("./build")
+
+	// inputs.property("news", "This" + System.)
+
+	doLast {
+		println "This is demoTask"
+	}
+}
+
+tasks.addRule("Pattern: build<ss>") { String taskName -> 
+	if (taskName.startsWith("build")) {
+		task(taskName) {
+			doLast {
+				println "This :" +  taskName
+			}
+		}
+	}
+}
+
+task zipTask {
+	
+}
+
+task file1{
+	doLast {
+		File file = file("intro.gradle");
+
+		def coll = files("./intro.gradle", "./build.gradle")
+
+		def fileTree = fileTree("./").include("**/*.gradle")
+
+		println "---" + file.name
+		coll.each {
+			println "---" + it.name
+		}
+
+		fileTree.each {
+			println "---" + it.name
+		}
+
+	}
+}
+
+
+class Ste {
+	String name
+	int age
+}
+
+task groovyAPI {
+
+	doLast {
+		// Object.any
+		println "" + [false, false].any();
+		println "" + [false, "123"].any();
+		println "" + [1, 2, 3].any {
+			it >= 3 
+		}
+
+		def bundles = ["bundle1", "bundle2", "bundle3", [1], [3,4,1,34]]
+		println bundles.collect {
+			it.asType(List)
+		};
+
+		println bundles.count("bundle1")
+
+		println bundles.findIndexOf {
+			it == "bundle3"
+		}
+
+		println bundles.flatten()
+
+
+		def words = ["I", "AM", "CHU", "FENMAG"]
+		println words.inject("MY NAME :", {
+			list, value -> list + value
+		})
+	}
+	
+}
+
+task logTest {
+	doLast {
+		logger.quiet('An info log message which is always logged.')
+		logger.error('An error log message.')
+		logger.warn('A warning log message.')
+		logger.lifecycle('A lifecycle info log message.')
+		logger.info('An info log message.')
+		logger.debug('A debug log message.')
+		logger.trace('A trace log message.')
+	}
+}
+
+
+

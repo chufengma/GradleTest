@@ -1,0 +1,7 @@
+println "This is master build.gradle"
+
+task testMaster {
+	doLast {
+		println "This is testMaster"
+	}
+}

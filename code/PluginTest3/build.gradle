@@ -1,0 +1,13 @@
+buildscript {
+    repositories {
+        maven {
+      		url "../maven"
+        }
+    }
+
+    dependencies {
+        classpath "com.onefengma.hello:PluginTest2:1.0.0"
+    }
+}
+
+apply plugin: 'com.onefengma.hello'

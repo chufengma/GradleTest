@@ -1,0 +1,1 @@
+println "This is Plugin Gradle from $project.name"

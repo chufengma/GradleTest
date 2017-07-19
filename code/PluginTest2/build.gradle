@@ -1,0 +1,30 @@
+plugins {
+  id 'java-gradle-plugin'
+  id 'maven-publish'
+  id 'groovy'
+}
+
+group 'com.onefengma.hello'
+version '1.0.0'
+
+gradlePlugin {
+  plugins {
+    hello {
+      id = "com.onefengma.hello"
+      implementationClass = "com.onefengma.hello.HelloPlugin"
+    }
+  }
+}
+
+publishing {
+  repositories {
+    maven {
+      url "../maven"
+    }
+  }
+}
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+}

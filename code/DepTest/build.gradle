@@ -1,0 +1,39 @@
+repositories {
+    mavenCentral()
+
+    repositories {
+    	maven { url "http://192.168.19.7:8081/nexus/content/groups/public/" }
+    }
+}
+
+configurations {
+   	compile {
+	   	 resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+	        println "--" + details.requested.name + "," + details.requested.version;
+	        if (details.requested.name == 'CTCrashLib') {
+	        	// details.useTarget "ctrip.wireless.android:CTPackageDownload:7.6.0_2017.07.14.130324"
+	        	// details.useTarget "ctrip.wireless.android:CTPackageDownload"
+	        	// details.useVersion "7.6.0_2017.07.14.130324"
+            	details.useTarget "org.slf4j:log4j-over-slf4j:1.7.10"
+	        }
+	     }
+
+	     resolutionStrategy.dependencySubstitution {
+        	substitute module("ctrip.wireless.android:CTFoundationLib:7.6.0_2017.07.14.125409")           with module("ctrip.wireless.android:CTPackageDownload:7.6.0_2017.07.14.181422")
+    	 }
+   	}
+}
+
+dependencies {
+	compile 'ctrip.wireless.android:CTCrashLib:7.6.0_2017.07.14.125754'
+	compile 'ctrip.wireless.android:CTCrashLib:7.6.0_2017.07.14.134249'
+	compile 'ctrip.wireless.android:CTFoundationLib:7.6.0_2017.07.14.125409'
+}
+
+task dep {
+	doLast {
+		configurations.compile.files.each {
+			println it
+		}
+	}
+}

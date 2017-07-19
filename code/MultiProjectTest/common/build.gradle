@@ -1,0 +1,14 @@
+project(':subproject') {
+	task hello {
+		doLast {
+			println "This is sub hello from Common"
+		}
+	}
+}
+
+
+ext.gameNameCommon = "common"
+
+rootProject.ext.gameName = 345
+
+println "sub:" + gameName + "," + gameNameCommon

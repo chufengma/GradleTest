@@ -1,0 +1,31 @@
+task hello {
+	doLast { 
+		println "I am root Hello"
+	}
+}
+
+project(':common') {
+	task('hello').doLast {
+		println "Im an common Hello"
+	}
+}
+
+allprojects {	
+	apply from: "${rootProject.rootDir}/plugin.gradle"
+
+	task game {
+		doLast { task ->
+            println "I'm $task.project.name"
+		}
+	}
+}
+
+configure(subprojects.findAll {it.name != 'common'}) {
+    game {
+        doLast {
+            println '- Game started'
+        }
+    }
+}
+
+ext.gameName = 123
