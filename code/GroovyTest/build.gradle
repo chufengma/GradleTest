@@ -1,0 +1,10 @@
+
+def includeModule(String[] moduleNames) {
+	moduleNames.each {
+		println it
+	}
+}
+
+task test {
+	includeModule "123", "444"
+}

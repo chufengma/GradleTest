@@ -1,0 +1,21 @@
+plugins {
+    id 'base'
+}
+
+task myJar(type: Jar)
+
+configurations {
+	dep	
+}
+
+artifacts {
+	dep myJar
+}
+
+uploadDep {
+    repositories {
+        maven {
+      		url "../maven"
+        }
+    }
+}

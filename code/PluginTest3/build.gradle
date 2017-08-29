@@ -1,4 +1,5 @@
 buildscript {
+
     repositories {
         maven {
       		url "../maven"
@@ -11,3 +12,15 @@ buildscript {
 }
 
 apply plugin: 'com.onefengma.hello'
+apply plugin: 'base'
+
+helloName = 12311
+
+
+
+uploadHello {
+	doLast {
+		println "Upload Hello" + helloName
+		println "tasks:" + rootProject + "," + project
+	}
+}

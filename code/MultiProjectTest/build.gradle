@@ -29,3 +29,7 @@ configure(subprojects.findAll {it.name != 'common'}) {
 }
 
 ext.gameName = 123
+
+rootProject.subprojects { project ->
+    println "--------subporoject"
+}

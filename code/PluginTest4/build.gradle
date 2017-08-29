@@ -1,0 +1,20 @@
+task doIt {
+	doLast {
+		println "This is DOIT"
+	}
+}
+
+gradle.taskGraph.whenReady { taskGraph ->
+
+	if (taskGraph.hasTask(':doIt')) {
+		doIt.doLast {
+        	println "fengma 2"
+        }
+	}
+
+	if (taskGraph.hasTask(':doIt2')) {
+		doIt2.doLast {
+        	println "fengma 3"
+        }
+	}
+}

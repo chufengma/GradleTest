@@ -1,0 +1,3 @@
+[submodule "android/BundleTest"]
+	path = android/BundleTest
+	url = https://github.com/chufengma/BundleDemo.git

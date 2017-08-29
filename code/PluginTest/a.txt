@@ -1,0 +1,2 @@
+
+://gateway.m.uat.qa.nt.ctripcorp.com/restapi/soa2/10245/json/GetGlobalADListV4?_rm=0.4565199488879148ATH=/Users/dev/Library/Android/sdk/build-tools/23.0.1:$PATH

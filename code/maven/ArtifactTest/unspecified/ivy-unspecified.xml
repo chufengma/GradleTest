@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:m="http://ant.apache.org/ivy/maven">
+  <info organisation="" module="ArtifactTest" revision="unspecified" status="integration" default="true" publication="20170720144822"/>
+  <configurations>
+    <conf name="archives" visibility="public"/>
+    <conf name="default" visibility="public"/>
+    <conf name="dep" visibility="public"/>
+  </configurations>
+  <publications>
+    <artifact name="ArtifactTest" type="jar" ext="jar" conf="archives,dep"/>
+  </publications>
+</ivy-module>

@@ -8,7 +8,6 @@ dependencies {
     compile localGroovy()
 }
 
-
 apply plugin: 'maven-publish'
 
 group = "com.onefengma.gradle"
@@ -38,3 +37,42 @@ publishing {
         }
     }
 } 
+
+// println "--------this configureate 1" + gradle.startParameter.taskRequests.args[0][0].split(":", 2)
+
+task testEvaluate {
+    println "--------this configureate at test"
+
+    doLast {
+        println "--------this exec at test"
+    }
+}
+
+afterEvaluate { project ->
+    task addOne {
+        println "--------this configureate at addOne"
+    }
+    println "--------afterEvaluate"
+}
+
+beforeEvaluate {
+        println "--------beforeEvaluate"
+}
+
+println "--------this configureate 2"
+
+
+rootProject.subprojects { project ->
+    println "--------subporoject"
+}
+
+project.ext.methodMissing = { methodName, methodArgs ->
+    println "MethodMissing:" + methodName + ":" + methodArgs
+}
+
+
+def data = ["123", "456", "789"]
+println data.collect {
+    it + ".so"
+}
+

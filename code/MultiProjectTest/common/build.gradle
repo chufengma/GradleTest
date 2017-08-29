@@ -1,3 +1,5 @@
+println "----sub:common"
+
 project(':subproject') {
 	task hello {
 		doLast {

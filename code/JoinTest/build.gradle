@@ -1,0 +1,7 @@
+task test{
+	doLast {
+		def fs = files("../PluginTest", "../.gitignore")
+		println fs.join(":")
+	}
+
+}
