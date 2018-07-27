@@ -1,0 +1,68 @@
+def getReleaseRepositoryUrl() {
+    return hasProperty('RELEASE_REPOSITORY_URL') ? RELEASE_REPOSITORY_URL
+            : "http://192.168.19.7:8081/nexus/content/repositories/releases/"
+}
+
+def getSnapshotRepositoryUrl() {
+    return hasProperty('SNAPSHOT_REPOSITORY_URL') ? SNAPSHOT_REPOSITORY_URL
+            : "http://192.168.19.7:8081/nexus/content/repositories/snapshots/"
+}
+
+def getRepositoryUsername() {
+    return hasProperty('NEXUS_USERNAME') ? NEXUS_USERNAME : "admin"
+}
+
+def getGroudID() {
+    return hasProperty('GROUPID') ? GROUPID : "ctrip.wireless.android"
+}
+
+def getRepositoryPassword() {
+    return hasProperty('NEXUS_PASSWORD') ? NEXUS_PASSWORD : "admin123"
+}
+
+def getArtifactId() {
+    return getModuleName()
+}
+
+
+apply plugin: 'maven-publish'
+
+publishing {
+
+    publications {
+            maven(MavenPublication) {
+                groupId "org.gradle.distributions"
+                artifactId "gradle"
+                version "4.1"
+
+                artifact(projectDir.absolutePath + "/gradle-4.1-all.zip") {
+                    classifier 'all'
+                    extension 'zip'
+                }
+            }
+     }
+
+    repositories {
+        maven {
+            credentials {
+                username getRepositoryUsername()
+                password getRepositoryPassword()
+            }
+
+            if (project.version.endsWith('-SNAPSHOT')) {
+                url getSnapshotRepositoryUrl()
+            } else {
+                url getReleaseRepositoryUrl()
+            }
+        }
+    }
+}
+
+
+task uploadAAR(dependsOn: ['publish']) {
+    if (hasProperty("versionPath")) {
+        doLast {
+            checkUpdate("$versionPath", "$TypeAAR", "$buildDir")
+        }
+    }
+}

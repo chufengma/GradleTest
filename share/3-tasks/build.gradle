@@ -1,0 +1,55 @@
+
+task ctripTest { // 1.简单Task
+    println "this is ctrip test."
+}
+
+// task ctripTest2(type: Exec) { // 2.内置Task类型
+//     commandLine "echo", "asdfasdf"
+// }
+
+// task ctripTest3 { // 3.Actions
+//     doFirst {
+//         println "first"
+//     }
+//     doLast {
+//         println "end"
+//     }
+// }
+
+// task ctripTest4(type: CalcSizeTask) { // 4.自定义Task
+//     fileName "./build.gradle"
+// }
+
+//ctripTest3.mustRunAfter(ctripTest4)
+//ctripTest3.shouldRunAfter(ctripTest4)
+
+// task ctripTest5(dependsOn: [ctripTest4, ctripTest3]) { // 5.规则和依赖
+//     doLast {
+//         println "ctripTest5"
+//     }
+// }
+
+// task ctripTest6(type: FileTask) { // 6.增量编译
+//     fileName "./test3.txt"
+// }
+
+// class CalcSizeTask extends DefaultTask {
+//     String fileName
+
+//     @TaskAction
+//     def calc() {
+//         println "size is:" + new FileInputStream(fileName).available();
+//     }
+// }
+
+// class FileTask extends DefaultTask {
+//     @Input
+//     String fileName
+
+//     @TaskAction
+//     void execute(IncrementalTaskInputs inputs) {
+//         new File(fileName).createNewFile();
+//     }
+// }
+
+

@@ -18,3 +18,9 @@ gradle.taskGraph.whenReady { taskGraph ->
         }
 	}
 }
+
+
+task npm(type: Exec) {
+    executable "npm"
+    args (['build'] as String[])
+}

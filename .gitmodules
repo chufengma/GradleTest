@@ -1,6 +1,4 @@
 [submodule "android/BundleTest"]
 	path = android/BundleTest
 	url = https://github.com/chufengma/BundleDemo.git
-	branch = stable
-[submodule "DbConnector"]
-	branch = stable
+	branch = newv

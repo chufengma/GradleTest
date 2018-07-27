@@ -1,0 +1,5 @@
+[submodule "BundleTest"]
+	path = BundleTest
+	url = https://github.com/chufengma/BundleDemo.git
+	branch = newv
+
